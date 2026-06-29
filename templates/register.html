@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Register</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    width:450px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h1{
+    text-align:center;
+    color:#8B0000;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#8B0000;
+    color:white;
+    border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Create Account</h1>
+
+<form action="/register" method="POST">
+
+<label>Full Name</label>
+
+<input
+type="text"
+name="fullname"
+required
+>
+
+<label>Phone Number</label>
+
+<input
+type="text"
+name="phone"
+required
+>
+
+<label>Gender</label>
+
+<select name="gender">
+
+<option>Male</option>
+
+<option>Female</option>
+
+</select>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+required
+>
+
+<button>
+
+Register
+
+</button>
+
+</form>
+
+<br>
+
+<a href="/login">
+
+Already have an account?
+
+Login
+
+</a>
+
+</div>
+
+</body>
+
+</html>

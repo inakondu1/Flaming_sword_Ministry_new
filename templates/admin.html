@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#8B0000;
+    color:white;
+    padding:20px;
+}
+
+header h1{
+    text-align:center;
+}
+
+nav{
+    margin-top:15px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 12px;
+    font-weight:bold;
+}
+
+.container{
+    width:95%;
+    margin:30px auto;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.card{
+    flex:1;
+    min-width:220px;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card h2{
+    color:#8B0000;
+    font-size:40px;
+    margin-top:10px;
+}
+
+.actions{
+    background:white;
+    padding:20px;
+    margin-bottom:30px;
+    border-radius:8px;
+}
+
+.actions a{
+    display:inline-block;
+    margin:10px;
+    padding:12px 18px;
+    background:#8B0000;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+table th{
+    background:#8B0000;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#222;
+    color:white;
+    margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🔥 Flaming Sword Ministry Admin Dashboard</h1>
+
+<nav>
+
+<a href="/">Home</a>
+<a href="/sermons">Sermons</a>
+<a href="/announcement">Announcements</a>
+<a href="/logout">Logout</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h2>Welcome {{.Name}}</h2>
+
+<br>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Members</h3>
+
+<h2>{{.TotalUsers}}</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Total Sermons</h3>
+
+<h2>{{.TotalSermons}}</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Announcements</h3>
+
+<h2>{{.TotalAnnouncements}}</h2>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<h2>Quick Actions</h2>
+
+<br>
+
+<a href="/admin/add-sermon">➕ Add Sermon</a>
+
+<a href="/admin/add-announcement">📢 Add Announcement</a>
+
+<a href="/admin/users">👥 View Members</a>
+
+</div>
+
+<h2>Registered Members</h2>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Gender</th>
+<th>Role</th>
+
+</tr>
+
+{{range .Users}}
+
+<tr>
+
+<td>{{.ID}}</td>
+<td>{{.FullName}}</td>
+<td>{{.Phone}}</td>
+<td>{{.Gender}}</td>
+<td>{{.Role}}</td>
+
+</tr>
+
+{{else}}
+
+<tr>
+
+<td colspan="5">No registered members.</td>
+
+</tr>
+
+{{end}}
+
+</table>
+
+</div>
+
+<footer>
+
+<p>Flaming Sword Ministry International © 2026</p>
+
+</footer>
+
+</body>
+</html>

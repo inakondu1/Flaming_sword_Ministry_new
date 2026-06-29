@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Add Sermon</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+
+    width:700px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:10px;
+
+    box-shadow:0 0 10px gray;
+}
+
+h1{
+
+    text-align:center;
+
+    color:#8B0000;
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    margin-bottom:20px;
+}
+
+textarea{
+
+    height:200px;
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#8B0000;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Add New Sermon</h1>
+
+<form method="POST" action="/admin/add-sermon">
+
+<label>Title</label>
+
+<input
+type="text"
+name="title"
+required
+>
+
+<label>Bible Verse</label>
+
+<input
+type="text"
+name="bible_verse"
+required
+>
+
+<label>Scripture References</label>
+
+<input
+type="text"
+name="references"
+>
+
+<label>Category</label>
+
+<input
+type="text"
+name="category"
+>
+
+<label>Date</label>
+
+<input
+type="date"
+name="date"
+>
+
+<label>Created By</label>
+
+<input
+type="text"
+name="created_by"
+>
+
+<label>Content</label>
+
+<textarea
+name="content"
+required
+></textarea>
+
+<button type="submit">
+
+Save Sermon
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

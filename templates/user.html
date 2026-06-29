@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Church Members</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:0;
+}
+
+header{
+    background:#8B0000;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    width:95%;
+    margin:30px auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#8B0000;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f2f2f2;
+}
+
+a{
+    text-decoration:none;
+    color:#8B0000;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>👥 Registered Members</h1>
+
+</header>
+
+<div class="container">
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Full Name</th>
+<th>Phone</th>
+<th>Gender</th>
+<th>Role</th>
+
+</tr>
+
+{{range .}}
+
+<tr>
+
+<td>{{.ID}}</td>
+<td>{{.FullName}}</td>
+<td>{{.Phone}}</td>
+<td>{{.Gender}}</td>
+<td>{{.Role}}</td>
+
+</tr>
+
+{{else}}
+
+<tr>
+
+<td colspan="5">
+
+No registered members.
+
+</td>
+
+</tr>
+
+{{end}}
+
+</table>
+
+<br>
+
+<a href="/admin">
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+</body>
+
+</html>

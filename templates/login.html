@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Login</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    width:400px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h1{
+    text-align:center;
+    color:#8B0000;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#8B0000;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:#8B0000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Member Login</h1>
+
+<form action="/login" method="POST">
+
+<label>Phone Number</label>
+
+<input
+type="text"
+name="phone"
+required
+>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+required
+>
+
+<button type="submit">
+
+Login
+
+</button>
+
+</form>
+
+<br>
+
+<p>
+
+Don't have an account?
+
+<a href="/register">
+
+Register Here
+
+</a>
+
+</p>
+
+</div>
+
+</body>
+
+</html>

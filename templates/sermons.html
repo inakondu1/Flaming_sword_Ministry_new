@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Sermons</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <h1>📖 Church Sermons</h1>
+
+    <a href="/admin/add-sermon">➕ Add New Sermon</a>
+
+    <hr>
+
+    {{if .}}
+
+        {{range .}}
+
+        <div style="border:1px solid #ccc; padding:20px; margin-bottom:20px;">
+
+            <h2>{{.Title}}</h2>
+
+            <p><strong>Main Bible Verse:</strong> {{.BibleVerse}}</p>
+
+            <p><strong>References:</strong> {{.References}}</p>
+
+            <p><strong>Category:</strong> {{.Category}}</p>
+
+            <p><strong>Date:</strong> {{.Date}}</p>
+
+            <p><strong>Preached By:</strong> {{.CreatedBy}}</p>
+
+            <hr>
+
+            <p>{{.Content}}</p>
+
+        </div>
+
+        {{end}}
+
+    {{else}}
+
+        <h3>No sermons have been added yet.</h3>
+
+    {{end}}
+
+</body>
+</html>
