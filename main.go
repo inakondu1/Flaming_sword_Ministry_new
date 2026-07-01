@@ -27,17 +27,26 @@ func main() {
 	// Public Routes
 	// =========================
 
+	// =========================
 	// Public Routes
+	// =========================
+
 	http.HandleFunc("/", handlers.WelcomeHandler)
 	http.HandleFunc("/home", handlers.HomeHandler)
 	http.HandleFunc("/about", handlers.AboutHandler)
+
 	http.HandleFunc("/login", handlers.LoginHandler)
 	http.HandleFunc("/register", handlers.RegisterHandler)
 	http.HandleFunc("/logout", handlers.LogoutHandler)
-	http.HandleFunc("/prayer", handlers.PrayerHandler)
+
 	http.HandleFunc("/sermons", handlers.ViewSermonsHandler)
 	http.HandleFunc("/sermon", handlers.ViewSingleSermonHandler)
+
 	http.HandleFunc("/announcement", handlers.ViewAnnouncementsHandler)
+
+	http.HandleFunc("/prayer", handlers.PrayerHandler)
+
+	http.HandleFunc("/events", handlers.ViewEventsHandler)
 
 	// Admin Routes
 	http.HandleFunc("/admin",
@@ -54,9 +63,16 @@ func main() {
 	http.HandleFunc("/admin/delete-sermon",
 		middleware.AdminOnly(handlers.DeleteSermonHandler),
 	)
-	
+
 	http.HandleFunc("/admin/delete-prayer",
 		middleware.AdminOnly(handlers.DeletePrayerHandler),
+	)
+	http.HandleFunc("/admin/add-event",
+		middleware.AdminOnly(handlers.AddEventHandler),
+	)
+
+	http.HandleFunc("/admin/delete-event",
+		middleware.AdminOnly(handlers.DeleteEventHandler),
 	)
 	http.HandleFunc("/admin/add-announcement",
 		middleware.AdminOnly(handlers.CreateAnnouncementHandler),
