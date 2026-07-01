@@ -6,15 +6,16 @@ import (
 
 	"Flaming_Sword_Ministry/database"
 	"Flaming_Sword_Ministry/middleware"
-	"Flaming_Sword_Ministry/models"
 )
 
-type AdminPage struct {
+type AdminData struct {
 	Name               string
 	TotalUsers         int
 	TotalSermons       int
 	TotalAnnouncements int
-	Users              []models.User
+	TotalPrayers       int
+	Users              interface{}
+	Prayers            interface{}
 }
 
 func AdminHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,18 +24,23 @@ func AdminHandler(w http.ResponseWriter, r *http.Request) {
 
 	name, _ := session.Values["name"].(string)
 
-	users, _ := database.GetAllUsers()
-
 	totalUsers, _ := database.CountUsers()
 	totalSermons, _ := database.CountSermons()
 	totalAnnouncements, _ := database.CountAnnouncements()
 
-	data := AdminPage{
+	prayers, _ := database.GetAllPrayers()
+	users, _ := database.GetAllUsers()
+
+	totalPrayers := len(prayers)
+
+	data := AdminData{
 		Name:               name,
 		TotalUsers:         totalUsers,
 		TotalSermons:       totalSermons,
 		TotalAnnouncements: totalAnnouncements,
+		TotalPrayers:       totalPrayers,
 		Users:              users,
+		Prayers:            prayers,
 	}
 
 	tmpl, err := template.ParseFiles("templates/admin.html")
@@ -43,5 +49,25 @@ func AdminHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.Execute(w, data)
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func ViewUsersHandler(w http.ResponseWriter, r *http.Request) {
+
+	users, err := database.GetAllUsers()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tmpl, err := template.ParseFiles("templates/user.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tmpl.Execute(w, users)
 }

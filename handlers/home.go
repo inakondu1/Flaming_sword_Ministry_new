@@ -10,25 +10,24 @@ import (
 
 type HomePageData struct {
 	Name          string
+	Role          string
 	Sermons       interface{}
 	Announcements interface{}
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
-	// Get logged-in user (if any)
 	session, _ := middleware.Store.Get(r, "church-session")
 
 	name, _ := session.Values["name"].(string)
+	role, _ := session.Values["role"].(string)
 
-	// Load sermons
 	sermons, _ := database.GetAllSermons()
-
-	// Load announcements
 	announcements, _ := database.GetAllAnnouncements()
 
 	data := HomePageData{
 		Name:          name,
+		Role:          role,
 		Sermons:       sermons,
 		Announcements: announcements,
 	}

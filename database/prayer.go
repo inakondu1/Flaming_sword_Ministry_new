@@ -4,12 +4,14 @@ import "Flaming_Sword_Ministry/models"
 
 // ================= CREATE PRAYER REQUEST =================
 
+// ================= CREATE PRAYER REQUEST =================
+
 func CreatePrayer(prayer models.Prayer) error {
 
 	_, err := DB.Exec(`
 		INSERT INTO prayer_requests
-		(name, phone, request)
-		VALUES (?, ?, ?)
+		(name, request)
+		VALUES (?, ?)
 	`,
 		prayer.Name,
 		prayer.Request,
@@ -59,4 +61,16 @@ func GetAllPrayers() ([]models.Prayer, error) {
 	}
 
 	return prayers, nil
+}
+
+// ================= DELETE PRAYER =================
+
+func DeletePrayer(id int) error {
+
+	_, err := DB.Exec(
+		"DELETE FROM prayer_requests WHERE id=?",
+		id,
+	)
+
+	return err
 }
