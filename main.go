@@ -23,7 +23,6 @@ func main() {
 		),
 	)
 
-	
 	// Public Routes
 	// =========================
 
@@ -70,6 +69,9 @@ func main() {
 	)
 	http.HandleFunc("/admin/add-event",
 		middleware.AdminOnly(handlers.AddEventHandler),
+	)
+	http.HandleFunc("/admin/prayers",
+		middleware.AdminOnly(handlers.ViewPrayersHandler),
 	)
 
 	http.HandleFunc("/admin/delete-event",
