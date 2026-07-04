@@ -23,11 +23,7 @@ func main() {
 		),
 	)
 
-	// =========================
-	// Public Routes
-	// =========================
-
-	// =========================
+	
 	// Public Routes
 	// =========================
 
@@ -38,6 +34,7 @@ func main() {
 	http.HandleFunc("/login", handlers.LoginHandler)
 	http.HandleFunc("/register", handlers.RegisterHandler)
 	http.HandleFunc("/logout", handlers.LogoutHandler)
+	http.HandleFunc("/contact", handlers.ContactHandler)
 
 	http.HandleFunc("/sermons", handlers.ViewSermonsHandler)
 	http.HandleFunc("/sermon", handlers.ViewSingleSermonHandler)
@@ -58,6 +55,10 @@ func main() {
 
 	http.HandleFunc("/admin/edit-sermon",
 		middleware.AdminOnly(handlers.EditSermonHandler),
+	)
+
+	http.HandleFunc("/admin/users",
+		middleware.AdminOnly(handlers.ViewMembersHandler),
 	)
 
 	http.HandleFunc("/admin/delete-sermon",
