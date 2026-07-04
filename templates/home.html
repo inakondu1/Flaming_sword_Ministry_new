@@ -22,32 +22,126 @@ body{
 }
 
 header{
-    background:#8B0000;
+    background:linear-gradient(90deg,#7A0000,#A40000);
     color:white;
-    padding:20px;
+    padding:15px 40px;
+    position:sticky;
+    top:0;
+    z-index:999;
 }
-
 header h1{
     text-align:center;
 }
 
 nav{
-    margin-top:15px;
-    text-align:center;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    margin:0 15px;
+    padding:10px 18px;
+    border-radius:6px;
+    transition:.3s;
     font-weight:bold;
 }
 
+nav a:hover{
+    background:#F4B400;
+    color:#111;
+    transform:translateY(-2px);
+}
 .hero{
-    background:#111;
-    color:white;
+    height:90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url("/static/images/hero.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
     text-align:center;
-    padding:80px 20px;
+}
+
+.overlay{
+    color:white;
+}
+
+.logo{
+    width:150px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.hero h2{
+    color:#F4B400;
+    font-size:34px;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:24px;
+}
+
+.hero-buttons{
+    margin-top:40px;
+}
+
+.btn-red,
+.btn-gold{
+
+    text-decoration:none;
+
+    padding:15px 35px;
+
+    margin:10px;
+
+    border-radius:6px;
+
+    font-weight:bold;
+
+    display:inline-block;
+
+}
+
+.btn-red{
+
+    background:#8B0000;
+    color:white;
+
+}
+
+.btn-gold{
+
+    background:#F4B400;
+    color:black;
+
+}
+
+.btn-red:hover{
+
+    background:#6b0000;
+
+}
+
+.btn-gold:hover{
+
+    background:#d89f00;
+
 }
 
 .hero h2{
@@ -130,17 +224,33 @@ button{
 
 <section class="hero">
 
+<div class="overlay">
+
+<img src="/static/images/logo.png" class="logo">
+
+<h1>Flaming Sword Ministry International</h1>
+
 <h2>Raising Kingdom Ambassadors</h2>
 
-<p>...Through the Power of God's Word.</p>
+<p>Through the Power of God's Word</p>
 
-<br>
+<div class="hero-buttons">
 
-<a href="/sermons">
-<button>
+<a href="/sermons" class="btn-red">
+
 Watch Sermons
-</button>
+
 </a>
+
+<a href="/prayer" class="btn-gold">
+
+Prayer Request
+
+</a>
+
+</div>
+
+</div>
 
 </section>
 

@@ -14,6 +14,8 @@ func main() {
 	// Connect Database
 	database.ConnectDB()
 
+	// Serve static files (CSS, JS, Images)
+
 	// Static Files
 	http.Handle(
 		"/static/",
