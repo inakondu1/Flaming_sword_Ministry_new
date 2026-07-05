@@ -4,47 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Church Sermons</title>
+
     <link rel="stylesheet" href="/static/css/style.css">
+
+    <style>
+
+    body{
+        font-family:Arial,Helvetica,sans-serif;
+        background:#f4f4f4;
+        margin:0;
+        padding:30px;
+    }
+
+    h1{
+        color:#8B0000;
+    }
+
+    .back-btn{
+        display:inline-block;
+        padding:10px 18px;
+        background:#8B0000;
+        color:white;
+        text-decoration:none;
+        border-radius:5px;
+        font-weight:bold;
+        margin-bottom:20px;
+    }
+
+    .back-btn:hover{
+        background:#700000;
+    }
+
+    .sermon{
+        background:white;
+        padding:20px;
+        margin-bottom:20px;
+        border-radius:8px;
+        box-shadow:0 0 8px #ccc;
+    }
+
+    </style>
+
 </head>
+
 <body>
 
-    <h1>📖 Church Sermons</h1>
+<h1>📖 Church Sermons</h1>
 
-    <a href="/admin/add-sermon">➕ Add New Sermon</a>
+<a href="/home" class="back-btn">← Back Home</a>
 
-    <hr>
+{{if eq .Role "admin"}}
+<a href="/admin/add-sermon" class="back-btn">➕ Add New Sermon</a>
+{{end}}
 
-    {{if .}}
+<hr><br>
 
-        {{range .}}
+{{range .Sermons}}
 
-        <div style="border:1px solid #ccc; padding:20px; margin-bottom:20px;">
+<div class="sermon">
 
-            <h2>{{.Title}}</h2>
+<h2>{{.Title}}</h2>
 
-            <p><strong>Main Bible Verse:</strong> {{.BibleVerse}}</p>
+<p><strong>Main Bible Verse:</strong> {{.BibleVerse}}</p>
 
-            <p><strong>References:</strong> {{.References}}</p>
+<p><strong>References:</strong> {{.References}}</p>
 
-            <p><strong>Category:</strong> {{.Category}}</p>
+<p><strong>Category:</strong> {{.Category}}</p>
 
-            <p><strong>Date:</strong> {{.Date}}</p>
+<p><strong>Date:</strong> {{.Date}}</p>
 
-            <p><strong>Preached By:</strong> {{.CreatedBy}}</p>
+<p><strong>Preached By:</strong> {{.CreatedBy}}</p>
 
-            <hr>
+<hr>
 
-            <p>{{.Content}}</p>
+<p>{{.Content}}</p>
 
-        </div>
+</div>
 
-        {{end}}
+{{else}}
 
-    {{else}}
+<h3>No sermons have been added yet.</h3>
 
-        <h3>No sermons have been added yet.</h3>
-
-    {{end}}
+{{end}}
 
 </body>
 </html>

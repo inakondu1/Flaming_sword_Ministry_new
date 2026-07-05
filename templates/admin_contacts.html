@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Contact Messages</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:0;
+}
+
+header{
+    background:#8B0000;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    width:95%;
+    margin:30px auto;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    background:#8B0000;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+    box-shadow:0 0 8px #ccc;
+}
+
+.card h2{
+    color:#8B0000;
+}
+
+.delete-btn{
+    display:inline-block;
+    margin-top:15px;
+    background:red;
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:5px;
+}
+
+.delete-btn:hover{
+    background:darkred;
+}
+
+small{
+    color:gray;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📩 Contact Messages</h1>
+
+</header>
+
+<div class="container">
+
+<a href="/admin" class="back-btn">← Back to Dashboard</a>
+
+{{range .}}
+
+<div class="card">
+
+<h2>{{.Subject}}</h2>
+
+<p><strong>Name:</strong> {{.FullName}}</p>
+
+<p><strong>Email:</strong> {{.Email}}</p>
+
+<p><strong>Phone:</strong> {{.Phone}}</p>
+
+<p>{{.Message}}</p>
+
+<small>{{.CreatedAt}}</small>
+
+<br>
+
+<a href="/admin/delete-contact?id={{.ID}}" class="delete-btn">
+
+Delete
+
+</a>
+
+</div>
+
+{{else}}
+
+<div class="card">
+
+<h2>No Contact Messages Yet.</h2>
+
+</div>
+
+{{end}}
+
+</div>
+
+</body>
+
+</html>

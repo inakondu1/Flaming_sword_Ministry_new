@@ -10,46 +10,80 @@
 <style>
 
 body{
-font-family:Arial;
-background:#f4f4f4;
-margin:0;
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:0;
 }
 
 header{
-background:#8B0000;
-color:white;
-padding:30px;
-text-align:center;
+    background:#8B0000;
+    color:white;
+    padding:30px;
+    text-align:center;
 }
 
 .container{
-width:90%;
-max-width:800px;
-margin:40px auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,.1);
+    width:90%;
+    max-width:850px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.1);
 }
 
 h2{
-color:#8B0000;
-margin-bottom:20px;
+    color:#8B0000;
 }
 
 .info{
-margin-bottom:25px;
-font-size:18px;
+    margin-bottom:30px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:20px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
+}
+
+textarea{
+    height:150px;
+    resize:vertical;
+}
+
+button{
+    background:#8B0000;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    font-size:16px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#700000;
 }
 
 .back{
-display:inline-block;
-margin-top:20px;
-padding:12px 20px;
-background:#8B0000;
-color:white;
-text-decoration:none;
-border-radius:5px;
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#8B0000;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.back:hover{
+    background:#700000;
 }
 
 </style>
@@ -60,7 +94,7 @@ border-radius:5px;
 
 <header>
 
-<h1>Contact Flaming Sword Ministry</h1>
+<h1>Contact Flaming Sword Ministry International</h1>
 
 </header>
 
@@ -72,15 +106,9 @@ border-radius:5px;
 
 <p><strong>📍 Address:</strong> Your Church Address</p>
 
-<br>
-
-<p><strong>📞 Phone:</strong> +234 XXX XXX XXXX</p>
-
-<br>
+<p><strong>📞 Phone:</strong> +234 810 042 3055</p>
 
 <p><strong>📧 Email:</strong> info@flamingswordministry.org</p>
-
-<br>
 
 <p><strong>⏰ Service Days</strong></p>
 
@@ -95,6 +123,75 @@ border-radius:5px;
 </ul>
 
 </div>
+
+<hr><br>
+
+{{if .Success}}
+
+<div class="success">
+
+✅ Thank you! Your message has been received.
+
+<br><br>
+
+We will contact you soon.
+
+God bless you.
+
+</div>
+
+{{end}}
+<form method="POST" action="/contact">
+
+<label>Full Name</label>
+
+
+
+<label>Phone Number</label>
+
+<input
+type="text"
+name="phone">
+
+<label>Message Type</label>
+
+<select name="subject" required>
+
+    <option value="">-- Select Message Type --</option>
+
+    <option value="Prayer Request">🙏 Prayer Request</option>
+
+    <option value="Counselling">❤️ Counselling</option>
+
+    <option value="Testimony">🙌 Testimony</option>
+
+    <option value="Enquiry">❓ General Enquiry</option>
+
+    <option value="Partnership">🤝 Partnership</option>
+
+    <option value="Giving">💰 Giving / Donation</option>
+
+    <option value="Volunteer">👥 Volunteer</option>
+
+    <option value="Other">📝 Other</option>
+
+</select>
+
+<label>Message</label>
+
+<textarea
+name="message"
+required></textarea>
+
+<button type="submit">
+
+Send Message
+
+</button>
+
+</form>
+
+<br>
 
 <a href="/home" class="back">
 

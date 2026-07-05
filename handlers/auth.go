@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 
@@ -85,11 +84,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 		session.Values["user_id"] = user.ID
 		session.Values["name"] = user.FullName
-		session.Values["role"] = "admin"
-		fmt.Println("USER:", user.FullName)
-		fmt.Println("ROLE:", user.Role)
-		fmt.Println("SESSION ROLE:", session.Values["role"])
-		fmt.Println("---------------------")
+		session.Values["role"] = user.Role
 
 		err = session.Save(r, w)
 		if err != nil {

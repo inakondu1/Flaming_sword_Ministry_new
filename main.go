@@ -75,6 +75,13 @@ func main() {
 	http.HandleFunc("/admin/prayers",
 		middleware.AdminOnly(handlers.ViewPrayersHandler),
 	)
+	http.HandleFunc("/admin/contacts",
+		middleware.AdminOnly(handlers.ViewContactsHandler),
+	)
+
+	http.HandleFunc("/admin/delete-contact",
+		middleware.AdminOnly(handlers.DeleteContactHandler),
+	)
 
 	http.HandleFunc("/admin/delete-event",
 		middleware.AdminOnly(handlers.DeleteEventHandler),
