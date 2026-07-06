@@ -43,6 +43,7 @@ func main() {
 	http.HandleFunc("/announcement", handlers.ViewAnnouncementsHandler)
 
 	http.HandleFunc("/prayer", handlers.PrayerHandler)
+	http.HandleFunc("/gallery", handlers.GalleryHandler)
 
 	http.HandleFunc("/events", handlers.ViewEventsHandler)
 
