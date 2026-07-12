@@ -23,20 +23,19 @@ func GetAllEvents() ([]models.Event, error) {
 
 	rows, err := DB.Query(`
 	SELECT
-	id,
-	title,
-	description,
-	event_date,
-	event_time,
-	venue,
-	created_at
+		id,
+		title,
+		description,
+		event_date,
+		event_time,
+		venue,
+		created_at
 	FROM events
 	ORDER BY event_date ASC
 	`)
 	if err != nil {
 		return nil, err
 	}
-
 	defer rows.Close()
 
 	var events []models.Event
@@ -45,7 +44,7 @@ func GetAllEvents() ([]models.Event, error) {
 
 		var e models.Event
 
-		rows.Scan(
+		err := rows.Scan(
 			&e.ID,
 			&e.Title,
 			&e.Description,
@@ -54,9 +53,16 @@ func GetAllEvents() ([]models.Event, error) {
 			&e.Venue,
 			&e.CreatedAt,
 		)
+		if err != nil {
+			return nil, err
+		}
 
 		events = append(events, e)
+	}
 
+	// Check for any errors encountered during iteration
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return events, nil

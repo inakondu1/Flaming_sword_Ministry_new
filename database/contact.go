@@ -31,7 +31,7 @@ func CreateContact(contact models.Contact) error {
 
 	query := `
 	INSERT INTO contacts
-	(fullname, email, phone, subject, message)
+	(fullname, phone, subject, message)
 	VALUES (?, ?, ?, ?)
 	`
 
@@ -85,6 +85,11 @@ func GetAllContacts() ([]models.Contact, error) {
 		}
 
 		contacts = append(contacts, contact)
+	}
+
+	// Check for errors after the loop
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return contacts, nil

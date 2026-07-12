@@ -58,6 +58,8 @@ func GetUserByPhone(phone string) (models.User, error) {
 
 // ================= ALL USERS =================
 
+// ================= ALL USERS =================
+
 func GetAllUsers() ([]models.User, error) {
 
 	rows, err := DB.Query(`
@@ -90,12 +92,16 @@ func GetAllUsers() ([]models.User, error) {
 			&user.Role,
 			&user.CreatedAt,
 		)
-
 		if err != nil {
 			return nil, err
 		}
 
 		users = append(users, user)
+	}
+
+	// Check for any errors during iteration
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return users, nil

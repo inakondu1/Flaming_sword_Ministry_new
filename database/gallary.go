@@ -9,7 +9,7 @@ import (
 func CreateGalleryTable() {
 
 	query := `
-	CREATE TABLE IF NOT EXISTS gallery (
+	CREATE TABLE IF NOT EXISTS gallery(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title TEXT NOT NULL,
 		image TEXT NOT NULL,
@@ -28,14 +28,9 @@ func CreateGalleryTable() {
 
 func CreateGallery(gallery models.Gallery) error {
 
-	query := `
-	INSERT INTO gallery
-	(title, image, description)
-	VALUES (?, ?, ?)
-	`
-
 	_, err := DB.Exec(
-		query,
+		`INSERT INTO gallery(title, image, description)
+		VALUES (?, ?, ?)`,
 		gallery.Title,
 		gallery.Image,
 		gallery.Description,
@@ -44,7 +39,7 @@ func CreateGallery(gallery models.Gallery) error {
 	return err
 }
 
-// ================= GET ALL IMAGES =================
+// ================= GET ALL GALLERY =================
 
 func GetAllGallery() ([]models.Gallery, error) {
 
@@ -63,27 +58,32 @@ func GetAllGallery() ([]models.Gallery, error) {
 	}
 	defer rows.Close()
 
-	var gallery []models.Gallery
+	var galleries []models.Gallery
 
 	for rows.Next() {
 
-		var img models.Gallery
+		var g models.Gallery
 
 		err := rows.Scan(
-			&img.ID,
-			&img.Title,
-			&img.Image,
-			&img.Description,
-			&img.CreatedAt,
+			&g.ID,
+			&g.Title,
+			&g.Image,
+			&g.Description,
+			&g.CreatedAt,
 		)
 		if err != nil {
 			return nil, err
 		}
 
-		gallery = append(gallery, img)
+		galleries = append(galleries, g)
 	}
 
-	return gallery, nil
+	// Check for any errors encountered during iteration
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return galleries, nil
 }
 
 // ================= DELETE IMAGE =================

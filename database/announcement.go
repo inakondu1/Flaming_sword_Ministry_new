@@ -47,6 +47,11 @@ func GetAllAnnouncements() ([]models.Announcement, error) {
 		announcements = append(announcements, a)
 	}
 
+	// Check for errors after iterating
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
 	return announcements, nil
 }
 

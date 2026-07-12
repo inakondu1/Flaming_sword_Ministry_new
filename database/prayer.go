@@ -52,12 +52,16 @@ func GetAllPrayers() ([]models.Prayer, error) {
 			&prayer.Status,
 			&prayer.CreatedAt,
 		)
-
 		if err != nil {
 			return nil, err
 		}
 
 		prayers = append(prayers, prayer)
+	}
+
+	// Check for errors after the loop
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return prayers, nil

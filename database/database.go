@@ -23,6 +23,7 @@ func ConnectDB() {
 	createAnnouncementsTable()
 	createPrayerTable()
 	createEventsTable()
+	CreateGalleryTable()
 
 	log.Println("✅ Database connected successfully.")
 }

@@ -37,6 +37,8 @@ func CreateSermon(sermon models.Sermon) error {
 
 // ================= GET ALL SERMONS =================
 
+// ================= GET ALL SERMONS =================
+
 func GetAllSermons() ([]models.Sermon, error) {
 
 	rows, err := DB.Query(`
@@ -80,6 +82,11 @@ func GetAllSermons() ([]models.Sermon, error) {
 		}
 
 		sermons = append(sermons, sermon)
+	}
+
+	// Check for iteration errors
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return sermons, nil
