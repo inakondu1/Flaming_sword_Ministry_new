@@ -24,7 +24,13 @@ func main() {
 			http.FileServer(http.Dir("static")),
 		),
 	)
-
+	http.Handle(
+		"/uploads/",
+		http.StripPrefix(
+			"/uploads/",
+			http.FileServer(http.Dir("uploads")),
+		),
+	)
 	// Public Routes
 	// =========================
 
@@ -36,6 +42,7 @@ func main() {
 	http.HandleFunc("/register", handlers.RegisterHandler)
 	http.HandleFunc("/logout", handlers.LogoutHandler)
 	http.HandleFunc("/contact", handlers.ContactHandler)
+	http.HandleFunc("/gallery", handlers.GalleryHandler)
 
 	http.HandleFunc("/sermons", handlers.ViewSermonsHandler)
 	http.HandleFunc("/sermon", handlers.ViewSingleSermonHandler)
@@ -43,7 +50,6 @@ func main() {
 	http.HandleFunc("/announcement", handlers.ViewAnnouncementsHandler)
 
 	http.HandleFunc("/prayer", handlers.PrayerHandler)
-	http.HandleFunc("/gallery", handlers.GalleryHandler)
 
 	http.HandleFunc("/events", handlers.ViewEventsHandler)
 
@@ -86,6 +92,13 @@ func main() {
 
 	http.HandleFunc("/admin/delete-event",
 		middleware.AdminOnly(handlers.DeleteEventHandler),
+	)
+	http.HandleFunc("/admin/add-gallery",
+		middleware.AdminOnly(handlers.AddGalleryHandler),
+	)
+
+	http.HandleFunc("/admin/delete-gallery",
+		middleware.AdminOnly(handlers.DeleteGalleryHandler),
 	)
 	http.HandleFunc("/admin/add-announcement",
 		middleware.AdminOnly(handlers.CreateAnnouncementHandler),

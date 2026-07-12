@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Gallery Image</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    width:700px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h1{
+    color:#8B0000;
+    text-align:center;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#8B0000;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.back{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    background:#8B0000;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/admin" class="back">← Back Dashboard</a>
+
+<h1>Upload Gallery Image</h1>
+
+<form action="/admin/add-gallery" method="POST" enctype="multipart/form-data">
+
+<label>Title</label>
+<input type="text" name="title" required>
+
+<label>Description</label>
+<textarea name="description"></textarea>
+
+<label>Select Image</label>
+<input type="file" name="image" required>
+
+<button type="submit">
+Upload Image
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

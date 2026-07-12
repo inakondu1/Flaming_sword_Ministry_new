@@ -24,6 +24,8 @@ func ConnectDB() {
 	createPrayerTable()
 	createEventsTable()
 	CreateGalleryTable()
+	CreateGalleryTable()
+	CreateContactTable()
 
 	log.Println("✅ Database connected successfully.")
 }

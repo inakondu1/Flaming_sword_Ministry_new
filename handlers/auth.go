@@ -86,6 +86,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		session.Values["name"] = user.FullName
 		session.Values["role"] = user.Role
 
+		println("================================")
+		println("Name:", user.FullName)
+		println("Role:", user.Role)
+		println("================================")
+
 		err = session.Save(r, w)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -15,6 +15,8 @@ type AdminData struct {
 	TotalAnnouncements int
 	TotalPrayers       int
 	TotalContacts      int
+	TotalEvents        int
+	TotalGallery       int
 
 	Users    interface{}
 	Prayers  interface{}
@@ -32,6 +34,10 @@ func AdminHandler(w http.ResponseWriter, r *http.Request) {
 	totalAnnouncements, _ := database.CountAnnouncements()
 	totalContacts, _ := database.CountContacts()
 
+	// NEW
+	totalEvents, _ := database.CountEvents()
+	totalGallery, _ := database.CountGallery()
+
 	prayers, _ := database.GetAllPrayers()
 	contacts, _ := database.GetAllContacts()
 	users, _ := database.GetAllUsers()
@@ -45,11 +51,14 @@ func AdminHandler(w http.ResponseWriter, r *http.Request) {
 		TotalAnnouncements: totalAnnouncements,
 		TotalPrayers:       totalPrayers,
 		TotalContacts:      totalContacts,
+		TotalEvents:        totalEvents,
+		TotalGallery:       totalGallery,
 
 		Users:    users,
 		Prayers:  prayers,
 		Contacts: contacts,
 	}
+
 	tmpl, err := template.ParseFiles("templates/admin.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

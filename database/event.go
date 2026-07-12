@@ -77,3 +77,15 @@ func DeleteEvent(id int) error {
 
 	return err
 }
+
+// Count Events
+func CountEvents() (int, error) {
+
+	var count int
+
+	err := DB.QueryRow(
+		"SELECT COUNT(*) FROM events",
+	).Scan(&count)
+
+	return count, err
+}
